@@ -7,6 +7,7 @@ import (
 	godyn "github.com/vedadiyan/godyn/pkg"
 	"github.com/vedadiyan/proton/pkg/conversions"
 	"github.com/vedadiyan/proton/pkg/helpers"
+	"github.com/vedadiyan/proton/pkg/models"
 	"github.com/vedadiyan/proton/pkg/options"
 	"github.com/vedadiyan/proton/pkg/sentinel"
 	"google.golang.org/protobuf/proto"
@@ -123,10 +124,7 @@ func (u unmarshaller) readValue(exprCtx ExprCtx, data map[string]any, pb proto.M
 		return extract(u.data, data, fieldName), nil
 	}
 	if opt.HasReduceAttribute() {
-		context := make(map[string]any)
-		context["self"] = u.data
-		context["data"] = data
-		res, err := (*exprCtx).Invoke(context, opt.GetReduceAttribute())
+		res, err := (*exprCtx).Invoke(models.New(u.data, data), opt.GetReduceAttribute())
 		if err != nil {
 			return nil, err
 		}
