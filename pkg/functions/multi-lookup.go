@@ -5,9 +5,10 @@ import (
 	"fmt"
 
 	godyn "github.com/vedadiyan/godyn/pkg"
+	"github.com/vedadiyan/proton/pkg/models"
 )
 
-func Where(data map[string]any, args []any) (any, error) {
+func Where(data models.ProtonArg, args []any) (any, error) {
 	err := godyn.ValidateArguments([]godyn.Type{godyn.ANY, godyn.STRING, godyn.ANY}, args)
 	if err != nil {
 		return nil, err
@@ -32,7 +33,7 @@ func Where(data map[string]any, args []any) (any, error) {
 	return nil, nil
 }
 
-func Select(data map[string]any, args []any) (any, error) {
+func Select(data models.ProtonArg, args []any) (any, error) {
 	err := godyn.ValidateArguments([]godyn.Type{godyn.ANY, godyn.STRING}, args)
 	if err != nil {
 		return nil, err
@@ -47,7 +48,7 @@ func Select(data map[string]any, args []any) (any, error) {
 	return res, nil
 }
 
-func From(data map[string]any, args []any) (any, error) {
+func From(data models.ProtonArg, args []any) (any, error) {
 	err := godyn.ValidateArguments([]godyn.Type{godyn.STRING}, args)
 	if err != nil {
 		return nil, err

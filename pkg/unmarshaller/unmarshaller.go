@@ -6,6 +6,7 @@ import (
 
 	godyn "github.com/vedadiyan/godyn/pkg"
 	"github.com/vedadiyan/proton/pkg/conversions"
+	"github.com/vedadiyan/proton/pkg/functions"
 	"github.com/vedadiyan/proton/pkg/helpers"
 	"github.com/vedadiyan/proton/pkg/models"
 	"github.com/vedadiyan/proton/pkg/options"
@@ -18,12 +19,13 @@ type unmarshaller struct {
 	data map[string]any
 }
 
-type ExprCtx *godyn.Godyn[map[string]any]
+type ExprCtx *godyn.Godyn[models.ProtonArg]
 
 var context ExprCtx
 
 func init() {
-
+	functions := functions.GetFunctions()
+	context = &functions
 }
 
 func Unmarshall(data map[string]any, pb proto.Message) error {
@@ -192,9 +194,9 @@ func _select[T any](selector func(t T) bool, items ...T) *T {
 	return nil
 }
 
-func mapNotNull(data map[string]any) bool {
-	return data != nil
-}
+// func mapNotNull(data map[string]any) bool {
+// 	return data != nil
+// }
 
 func stringNotEmpty(str string) bool {
 	return str != ""

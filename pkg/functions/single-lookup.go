@@ -1,8 +1,11 @@
 package functions
 
-import godyn "github.com/vedadiyan/godyn/pkg"
+import (
+	godyn "github.com/vedadiyan/godyn/pkg"
+	"github.com/vedadiyan/proton/pkg/models"
+)
 
-func First(data map[string]any, args []any) (any, error) {
+func First(data models.ProtonArg, args []any) (any, error) {
 	err := godyn.ValidateArguments([]godyn.Type{godyn.ANY}, args)
 	if err != nil {
 		return nil, err
@@ -20,7 +23,7 @@ func First(data map[string]any, args []any) (any, error) {
 	return nil, nil
 }
 
-func Last(data map[string]any, args []any) (any, error) {
+func Last(data models.ProtonArg, args []any) (any, error) {
 	err := godyn.ValidateArguments([]godyn.Type{godyn.STRING}, args)
 	if err != nil {
 		return nil, err
