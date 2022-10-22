@@ -1,11 +1,11 @@
 package functions
 
 import (
-	"errors"
 	"fmt"
 
 	godyn "github.com/vedadiyan/godyn/pkg"
 	"github.com/vedadiyan/proton/pkg/models"
+	"github.com/vedadiyan/proton/pkg/sentinel"
 )
 
 func Where(data models.ProtonArg, args []any) (any, error) {
@@ -135,7 +135,7 @@ func from(key []string, data map[string]any) (any, error) {
 	}
 	reduce(key, d, func(current *any) bool {
 		if index > 0 {
-			err = errors.New("invalid data type")
+			err = sentinel.InvalidDataType()
 			return false
 		}
 		if current != nil {
