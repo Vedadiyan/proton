@@ -19,12 +19,12 @@ message Avaiability {
     string name = 2 [(select)="name"];
     double min_price = 3 [json_name = "min_price", (query)="SELECT(FIRST(WHERE(modalities.amountsFrom, paxType, ADULT)), amount)"];
     string thumbnail = 4 [(query)="SELECT(FIRST(WHERE(SELECT(FIRST(content.media.images), urls), sizeType, LARGE)), resource)"];
-    Location location = 5 [json_name = "location"];
+    Location location = 5 [json_name = "location", (select)="content"];
 }
 
 message Location {
-    double latitude = 1 [(query)="FIRST(content.location.startingPoints.meetingPoint.geolocation.latitude)"];
-    double longitude = 2 [(query)="FIRST(content.location.startingPoints.meetingPoint.geolocation.longitude)"];
+    double latitude = 1 [(query)="FIRST(location.startingPoints.meetingPoint.geolocation.latitude)"];
+    double longitude = 2 [(query)="FIRST(location.startingPoints.meetingPoint.geolocation.longitude)"];
 }
 
 message ArrayOfAvailabilities {

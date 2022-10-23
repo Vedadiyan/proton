@@ -204,7 +204,11 @@ func stringNotEmpty(str string) bool {
 
 func dataSwap(opt *options.ProtonOptions, rootData map[string]any, scopedData map[string]any) (map[string]any, error) {
 	if opt.HasSelectAttribute() {
-		data, ok := extract(rootData, scopedData, opt.GetSelectAttribute()).(map[string]any)
+		e := extract(rootData, scopedData, opt.GetSelectAttribute())
+		if e == nil {
+			return nil, nil
+		}
+		data, ok := e.(map[string]any)
 		if !ok {
 			return nil, sentinel.InvalidDataType()
 		}

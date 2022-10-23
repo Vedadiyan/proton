@@ -38,9 +38,9 @@ func Last(data models.ProtonArg, args []any) (any, error) {
 	return nil, nil
 }
 
-func first(key []string, data map[string]any) any {
+func first(key []string, data models.ProtonArg) any {
 	var prev any
-	reduce(key, data["data"].(map[string]any), func(current *any) bool {
+	reduce(key, data.GetData(), func(current *any) bool {
 		if current != nil {
 			prev = *current
 		}

@@ -14,23 +14,28 @@ func TestAvailability(t *testing.T) {
 	wd, err := os.Getwd()
 	if err != nil {
 		t.Error("cloud not get working directory")
+		return
 	}
 	file, err := os.ReadFile(fmt.Sprintf("%s/resources/availability.json", wd))
 	if err != nil {
 		t.Error("could not read source file")
+		return
 	}
 	err = json.Unmarshal(file, &mapper)
 	if err != nil {
 		t.Error("could not deserialize json")
+		return
 	}
 	activities := ArrayOfAvailabilities{}
 	err = unmarshaller.Unmarshall(mapper, &activities)
 	if err != nil {
 		t.Error(err)
+		return
 	}
 	len := len(activities.GetAvailabilities())
 	if len == 0 {
 		t.Error("bad unmarshaller")
+		return
 	}
 	t.Logf("%d unmarshalled", len)
 	availability := activities.GetAvailabilities()[1]
