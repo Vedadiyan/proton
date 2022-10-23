@@ -15,19 +15,19 @@ func Where(data models.ProtonArg, args []any) (any, error) {
 	}
 	selector := args[1].(string)
 	selector = fixString(selector)
-	v := args[2]
-	value := fmt.Sprintf("%v", v)
-	value = fixString(value)
+	argValue := args[2]
+	finalValue := fmt.Sprintf("%v", argValue)
+	finalValue = fixString(finalValue)
 	if key, ok := args[0].(string); ok {
-		res := where(getKeys(key), selector, value, data)
+		res := where(getKeys(key), selector, finalValue, data)
 		return res, nil
 	}
 	if key, ok := args[0].(map[string]any); ok {
-		res := whereKey([]string{}, value, key)
+		res := whereKey([]string{}, finalValue, key)
 		return res, nil
 	}
 	if data, ok := args[0].([]any); ok {
-		res := whereAlt(selector, value, data)
+		res := whereAlt(selector, finalValue, data)
 		return res, nil
 	}
 	return nil, nil
@@ -58,9 +58,9 @@ func From(data models.ProtonArg, args []any) (any, error) {
 	return from(key, data)
 }
 
-func where(key []string, selector string, value string, data map[string]any) []any {
+func where(key []string, selector string, value string, data models.ProtonArg) []any {
 	prev := make([]any, 0)
-	reduce(key, data["data"].(map[string]any), func(current *map[string]any) bool {
+	reduce(key, data.GetData(), func(current *map[string]any) bool {
 		if current != nil {
 			if v, ok := (*current)[selector]; ok {
 				if v == value {
@@ -73,7 +73,7 @@ func where(key []string, selector string, value string, data map[string]any) []a
 	return prev
 }
 
-func whereKey(key []string, value string, data map[string]any) any {
+func whereKey(key []string, value string, data models.ProtonArg) any {
 	var prev any
 	reduce(key, data, func(current *map[string]any) bool {
 		if current != nil {
@@ -104,7 +104,7 @@ func whereAlt(selector string, value string, data []any) []any {
 	return prev
 }
 
-func _select(data map[string]any, key string) any {
+func _select(data models.ProtonArg, key string) any {
 	keys := getKeys(key)
 	prev := make([]any, 0)
 	reduce(keys, data, func(current *any) bool {
@@ -122,16 +122,16 @@ func _select(data map[string]any, key string) any {
 	return prev
 }
 
-func from(key []string, data map[string]any) (any, error) {
+func from(key []string, data models.ProtonArg) (any, error) {
 	var prev any
 	var err error
 	index := 0
 	var d map[string]any
 	if key[0] == "$ROOT" {
 		key = key[1:]
-		d = data["self"].(map[string]any)
+		d = data.GetSelf()
 	} else {
-		d = data["data"].(map[string]any)
+		d = data.GetData()
 	}
 	reduce(key, d, func(current *any) bool {
 		if index > 0 {
