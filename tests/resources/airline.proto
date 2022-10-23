@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package amadeus.airline;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "autogen/amadeus/airline";
+
+extend google.protobuf.FieldOptions {
+    optional string select = 51234;
+}
+
+extend google.protobuf.FieldOptions {
+    optional string query = 51235;
+}
+
+message Offer {
+    string id = 1 [(select)="id"];
+    repeated Option options = 2 [(select)="itineraries"];
+    double price = 3 [(select)="price.total"];
+    string currency = 4 [(select)="price.currency"];
+    int32 available_seats = 5 [(select)="numberOfBookableSeats"];
+}
+
+message Option {
+    string duration = 1 [(select)="duration"];
+    repeated Route routes = 2 [(select)="segments"];
+}
+
+message Route {
+    Airport departure = 1 [(select)="departure"];
+    Airport arrival = 2 [(select)="arrival"];
+    string carrier_code = 3 [(select)="carrierCode"];
+    string carrier = 4 [(query)="WHERE(FROM(`$ROOT.dictionaries.carriers`), `$KEY` , FROM(carrierCode))"];
+    string operated_by = 5 [(select)="operating.carrierCode"];
+    string duration = 6 [(select)="duration"];
+    int32 number_of_stops = 7 [(select)="numberOfStops"];
+}
+
+message Airport {
+    string iata_code = 1 [(select)="iataCode"];
+    string terminal = 2 [(select)="terminal"];
+    string datetime = 3 [(select)="at"];
+}
+
+message ArrayOfOffers {
+    repeated Offer offers = 1 [(select)="data"];
+}
+
+message SearchRes {
+    oneof result {
+        ArrayOfOffers data = 1;
+    }
+}
+
+message SearchReq {
+    double latitude = 2;
+    double longitude = 3;
+    int32 adults = 4;
+    optional int32 children = 5;
+    string travel_class = 6;
+    bool one_way = 7;
+}

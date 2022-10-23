@@ -16,7 +16,7 @@ func TestAvailability(t *testing.T) {
 		t.Error("cloud not get working directory")
 		return
 	}
-	file, err := os.ReadFile(fmt.Sprintf("%s/resources/availability.json", wd))
+	file, err := os.ReadFile(fmt.Sprintf("%s/../resources/availability.json", wd))
 	if err != nil {
 		t.Error("could not read source file")
 		return
