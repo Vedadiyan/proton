@@ -89,7 +89,20 @@ func (u unmarshaller) readList(exprCtx ExprCtx, data map[string]any, pb proto.Me
 	}
 
 	if opt.HasReduceAttribute() {
-		panic("not implemented")
+		res, err := (*exprCtx).Invoke(models.New(u.data, data), opt.GetReduceAttribute())
+		if err != nil {
+			return nil, err
+		}
+		switch r := res.(type) {
+		case []any:
+			{
+				return r, nil
+			}
+		default:
+			{
+				return []any{r}, nil
+			}
+		}
 	}
 
 	target := extract(u.data, data, *fieldName)

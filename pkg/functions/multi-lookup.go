@@ -41,10 +41,36 @@ func Select(data models.ProtonArg, args []any) (any, error) {
 	if args[0] == nil {
 		return nil, nil
 	}
-	d := args[0].(map[string]any)
-	key := args[1].(string)
-	key = fixString(key)
-	res := _select(d, key)
+	var res any
+	switch d := args[0].(type) {
+	case string:
+		{
+			res, err := Select(data, []any{data.GetData(), d})
+			if err != nil {
+				return nil, err
+			}
+			return Select(data, []any{res, args[1]})
+		}
+	case map[string]any:
+		{
+			key := args[1].(string)
+			key = fixString(key)
+			res = _select(d, key)
+		}
+	case []any:
+		{
+			output := make([]any, 0)
+			for _, value := range d {
+				res, err := Select(data, []any{value, args[1]})
+				if err != nil {
+					return nil, err
+				}
+				output = append(output, res)
+			}
+			res = output
+
+		}
+	}
 	return res, nil
 }
 
