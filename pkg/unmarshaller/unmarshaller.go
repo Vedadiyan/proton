@@ -166,8 +166,14 @@ func (u unmarshaller) setList(list []any, pb proto.Message, fd protoreflect.Fiel
 }
 
 func (u unmarshaller) setListPrimitive(list []any, pb proto.Message, fd protoreflect.FieldDescriptor) error {
+	if list == nil {
+		return nil
+	}
 	ls := pb.ProtoReflect().Mutable(fd).List()
 	for _, item := range list {
+		if item == nil {
+			continue
+		}
 		ls.Append(protoreflect.ValueOf(item))
 	}
 	return nil
