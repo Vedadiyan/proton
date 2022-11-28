@@ -249,6 +249,9 @@ func toInt64(input any) (int64, error) {
 	if value, ok := input.(int); ok {
 		return int64(value), nil
 	}
+	if value, ok := input.(int32); ok {
+		return int64(value), nil
+	}
 	if value, ok := input.(int16); ok {
 		return int64(value), nil
 	}

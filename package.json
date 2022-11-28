@@ -1,14 +1,14 @@
 {
-    "Name": "github.com/vedadiyan/proton",
-    "Version": "v1.0.0",
-    "Packages": {
-        "github.com/vedadiyan/gocollections": {
-            "Uri": "https://github.com/vedadiyan/gocollections.git",
-            "Private": true
-        },
-        "github.com/vedadiyan/godyn": {
-            "Uri": "https://github.com/vedadiyan/godyn.git",
-            "Private": true
-        }
-    }
+	"Name": "github.com/vedadiyan/proton",
+	"Version": "v1.0.0",
+	"Packages": {
+		"github.com/vedadiyan/gocollections": {
+			"Uri": "https://github.com/vedadiyan/gocollections.git",
+			"Private": true
+		},
+		"github.com/vedadiyan/godyn": {
+			"Uri": "https://github.com/vedadiyan/godyn.git",
+			"Private": true
+		}
+	}
 }

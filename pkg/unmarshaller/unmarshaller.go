@@ -1,7 +1,6 @@
 package unmsarshaller
 
 import (
-	"errors"
 	"strings"
 
 	godyn "github.com/vedadiyan/godyn/pkg"
@@ -43,7 +42,7 @@ func (u unmarshaller) parse(data map[string]any, pb proto.Message) error {
 		fd := fields.Get(i)
 		err := u.link(context, data, pb, fd)
 		if err != nil {
-			if errors.Is(err, sentinel.TargetDoesNotExist()) {
+			if err.Error() == sentinel.TargetDoesNotExist().Error() {
 				continue
 			}
 			return err
@@ -57,7 +56,9 @@ func (u unmarshaller) link(exprCtx ExprCtx, data map[string]any, pb proto.Messag
 	if fd.IsList() {
 		l, err := u.readList(exprCtx, data, pb, fd)
 		if err != nil {
-			return err
+			if err.Error() != sentinel.TargetDoesNotExist().Error() {
+				return err
+			}
 		}
 		return u.setList(l, pb, fd)
 	}
