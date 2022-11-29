@@ -13,13 +13,13 @@ func Replace(data models.ProtonArg, args []any) (any, error) {
 	if err != nil {
 		return nil, err
 	}
-	_source := args[0]
+	origin := args[0]
 	source := fixString(args[1].(string))
 	target := fixString(args[2].(string))
-	_ = _source
+	_ = origin
 	_ = source
 	_ = target
-	switch t := _source.(type) {
+	switch t := origin.(type) {
 	case string:
 		{
 			return strings.ReplaceAll(t, source, target), nil
