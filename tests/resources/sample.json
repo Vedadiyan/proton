@@ -1,0 +1,419 @@
+{
+    "content": {
+        "id": "136985",
+        "code": "fattoria_lalpenice_bioagriturismo",
+        "general_info": {
+            "name": "L'Alpenice Bioagriturismo",
+            "hotel_chain": "No chain",
+            "kind": "Hotel",
+            "star_rating": "1",
+            "check_in_time": "13:00:00",
+            "check_out_time": "11:00:00",
+            "address": "Via Monticelli 1090 - Località Mulino, 41056 Savignano sul Panaro, Italy, Vignola",
+            "postal_code": "41056",
+            "is_closed": false,
+            "semantic_version": "0"
+        },
+        "images": [
+            "https://cdn.worldota.net/t/{size}/carsolize/19/8e/198eff3eeadf9866f2c3f4449d4cc15d31aba92b.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/57/cd/57cd587e746ae29d92a8bbba798990035c412db0.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/20/b1/20b1a307b6886adc0ed4c0448e4437ebd4458300.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/aa/ef/aaef1bcf4d18ac60af618d11a2d117da0ce25b3a.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/92/5c/925c9827a3b3a2ff561517699329c750491f624d.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/f6/33/f633be9c0de564e42f2952348da6f3e23444aaca.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/c0/72/c072b5b90d1b27030c1656c9ad7fe41e94cb71bb.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/ee/99/ee99bea58205696a0cf6e92351ad0d29cf87d948.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/22/10/22106351a7660e70a4a36482c611b3e68bffdadd.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/c7/76/c776058823f86dff5f4963fc640f67a29a03b5e5.jpeg",
+            "https://cdn.worldota.net/t/{size}/carsolize/73/d9/73d9008dfbfbb8126f8fcddb50ec1bf9c01c4b63.jpeg"
+        ],
+        "serp_filters": [
+            "has_internet",
+            "has_airport_transfer",
+            "has_parking",
+            "has_kids",
+            "has_meal",
+            "has_disabled_support",
+            "has_business",
+            "has_spa",
+            "air_conditioning",
+            "has_pets",
+            "has_jacuzzi",
+            "kitchen"
+        ],
+        "amenity_groups": [
+            {
+                "amenities": [
+                    "Shopping on site",
+                    "Air conditioning",
+                    "Smoke-free property",
+                    "Heating",
+                    "Garden",
+                    "Terrace",
+                    "Fire Extinguisher",
+                    "All Spaces Non-Smoking (public and private)",
+                    "Outdoor furniture",
+                    "No elevators",
+                    "Reception desk"
+                ],
+                "group_name": "General"
+            },
+            {
+                "amenities": [
+                    "Non-smoking rooms",
+                    "Room service",
+                    "Fridge",
+                    "Family room",
+                    "TV",
+                    "Hairdryer",
+                    "Shower/Bathtub",
+                    "Shower",
+                    "Wardrobe/Closet",
+                    "Mosquito net"
+                ],
+                "group_name": "Rooms"
+            },
+            {
+                "amenities": [
+                    "Accessibility features"
+                ],
+                "group_name": "Accessibility"
+            },
+            {
+                "amenities": [
+                    "Iron and board",
+                    "Laundry"
+                ],
+                "group_name": "Services and amenities"
+            },
+            {
+                "amenities": [
+                    "Coffee/tea for guests",
+                    "Diet menu (on request)",
+                    "Breakfast",
+                    "Breakfast in the room",
+                    "Common kitchen",
+                    "Restaurant",
+                    "Kitchen",
+                    "Packed Lunches",
+                    "Coffeemaker",
+                    "Bottled water (at extra charge)",
+                    "Kettle"
+                ],
+                "group_name": "Meals"
+            },
+            {
+                "amenities": [
+                    "Free Wi-Fi",
+                    "In-room internet"
+                ],
+                "group_name": "Internet"
+            },
+            {
+                "amenities": [
+                    "Airport transportation",
+                    "Transfer services"
+                ],
+                "group_name": "Transfer"
+            },
+            {
+                "amenities": [
+                    "German",
+                    "English",
+                    "Italian"
+                ],
+                "group_name": "Languages Spoken"
+            },
+            {
+                "amenities": [
+                    "Tour assistance"
+                ],
+                "group_name": "Tourist services"
+            },
+            {
+                "amenities": [
+                    "Library",
+                    "Hiking",
+                    "Sun Deck"
+                ],
+                "group_name": "Recreation"
+            },
+            {
+                "amenities": [
+                    "Free Parking on Premises"
+                ],
+                "group_name": "Parking"
+            },
+            {
+                "amenities": [
+                    "Spa tub",
+                    "Beach/pool towels"
+                ],
+                "group_name": "Pool and beach"
+            },
+            {
+                "amenities": [
+                    "Meeting and presentation facilities",
+                    "Conference Hall"
+                ],
+                "group_name": "Business"
+            },
+            {
+                "amenities": [
+                    "Table Tennis"
+                ],
+                "group_name": "Sports"
+            },
+            {
+                "amenities": [
+                    "Massage",
+                    "Steam room",
+                    "Beauty services",
+                    "Spa"
+                ],
+                "group_name": "Beauty and wellness"
+            },
+            {
+                "amenities": [
+                    "Playroom",
+                    "Family/Kid Friendly"
+                ],
+                "group_name": "Kids"
+            },
+            {
+                "amenities": [
+                    "Pets allowed"
+                ],
+                "group_name": "Pets"
+            }
+        ],
+        "description": [
+            {
+                "paragraphs": [
+                    "Want to save money while travelling? It’s easy: hotel «L'Alpenice Bioagriturismo» is located in Vignola. This hotel is located in 3 km from the city center. You can take a walk and explore the neighbourhood area of the hotel — University of Modena and Reggio Emilia, San Vincenzo and Orto Botanico di Modena."
+                ],
+                "title": "Location"
+            },
+            {
+                "paragraphs": [
+                    "Taste the local cuisine and have a rest in the restaurant. In the shared kitchen, you can cook anything you want. Free Wi-Fi on the territory will help you to stay on-line. If you travel by car, there’s a free parking zone.",
+                    "The beauty and wellness services: a massage room, a steam bath and a spa center. Guests who love doing sports will be able to enjoy a table tennis area. You will find these entertainment amenities on the premises: a library. Children will be happy, there is a playroom for them.",
+                    "The tour assistance desk of the hotel will help you book an excursion. Pets are welcome here. If you want to make your journey even more comfortable, you can order a transfer. At the guests’ disposal, there’s also a laundry.",
+                    "The staff of the hotel speaks English, Italian and German."
+                ],
+                "title": "At the hotel"
+            },
+            {
+                "paragraphs": [
+                    "In the room, for you, there is a shower and a TV. Please note that the listed services may not be available in all the rooms."
+                ],
+                "title": "Room amenities"
+            }
+        ],
+        "policy": [
+            {
+                "paragraphs": [
+                    "Information about the type of meals included in the price is indicated in the rate details."
+                ],
+                "title": "Meals"
+            },
+            {
+                "paragraphs": [
+                    "A cleaning tax is not included in the reservation price and is payable separately at the hotel.\r",
+                    "\r",
+                    "Mandatory gala dinner fees may apply at Italy hotels. Guests should contact the hotel directly for more information.",
+                    "Please inform L'Alpenice Bioagriturismo in advance of your expected arrival time. You can use the Special Requests box when booking, or contact the property directly with the contact details provided in your confirmation. In response to Coronavirus (COVID-19), additional safety and sanitation measures are in effect at this property. Please note that access and use of the wellness centre is an additional cost. Vegan, vegetarian and gluten-free breakfast options are at extra costs. Check-in after 21:00 is not possible."
+                ],
+                "title": "Extra info"
+            }
+        ],
+        "room_groups": [
+            {
+                "room_group_id": "76",
+                "name": "Economy Double room full double bed",
+                "room_amenities": [
+                    "shared-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "11",
+                "images": [
+                    "https://cdn.worldota.net/t/{size}/content/07/24/0724ab08ba96b4a63afcbf3d5b35630055470273.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/e4/ec/e4ec31b81a1a6751fa2ad24eacc8444e90b2b696.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/d1/e0/d1e0cd9fb2ee93224cd251d9d20833d76b825a4a.jpeg"
+                ],
+                "name": "Standard room",
+                "room_amenities": [
+                    "air-conditioning",
+                    "private-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "22590004",
+                "images": [
+                    "https://cdn.worldota.net/t/{size}/content/07/24/0724ab08ba96b4a63afcbf3d5b35630055470273.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/e4/ec/e4ec31b81a1a6751fa2ad24eacc8444e90b2b696.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/d1/e0/d1e0cd9fb2ee93224cd251d9d20833d76b825a4a.jpeg"
+                ],
+                "name": "Standard Quadruple room",
+                "room_amenities": [
+                    "air-conditioning",
+                    "private-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "26",
+                "images": [
+                    "https://cdn.worldota.net/t/{size}/content/1e/84/1e849cda79df304b3bc2122bce16be95a7a140e0.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/7f/3a/7f3a2c56fea06c606bec61115a6af3dd70b0a4d7.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/4f/98/4f983856e483478b83a98b131181c2205977241e.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/d7/0d/d70dda6cb86fee44d89a8dc3a155b3320ee28f8e.jpeg"
+                ],
+                "name": "Studio",
+                "room_amenities": [
+                    "air-conditioning",
+                    "private-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "19444248",
+                "images": [
+                    "https://cdn.worldota.net/t/{size}/content/1e/84/1e849cda79df304b3bc2122bce16be95a7a140e0.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/7f/3a/7f3a2c56fea06c606bec61115a6af3dd70b0a4d7.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/4f/98/4f983856e483478b83a98b131181c2205977241e.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/d7/0d/d70dda6cb86fee44d89a8dc3a155b3320ee28f8e.jpeg"
+                ],
+                "name": "Single Studio",
+                "room_amenities": [
+                    "private-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "9",
+                "name": "Economy room",
+                "room_amenities": [
+                    "shared-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "19444276",
+                "images": [
+                    "https://cdn.worldota.net/t/{size}/content/07/24/0724ab08ba96b4a63afcbf3d5b35630055470273.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/e4/ec/e4ec31b81a1a6751fa2ad24eacc8444e90b2b696.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/d1/e0/d1e0cd9fb2ee93224cd251d9d20833d76b825a4a.jpeg"
+                ],
+                "name": "Standard Single room",
+                "room_amenities": [
+                    "air-conditioning",
+                    "private-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "90",
+                "images": [
+                    "https://cdn.worldota.net/t/{size}/content/f0/ed/f0ed1b2964ca2b4df76107664f944b02f87a56c7.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/d7/0d/d70dda6cb86fee44d89a8dc3a155b3320ee28f8e.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/a7/cd/a7cdca56fed25065b242b1c339481d6158de9fec.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/ea/e2/eae214041c1025a8cfdacf7c8def617fe56469d3.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/ae/f7/aef788cba4de5cb065df3fa6ac98af7d501834be.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/e4/ec/e4ec31b81a1a6751fa2ad24eacc8444e90b2b696.jpeg"
+                ],
+                "name": "Standard Double room full double bed",
+                "room_amenities": [
+                    "air-conditioning",
+                    "hairdryer",
+                    "heating",
+                    "iron",
+                    "private-bathroom",
+                    "shower",
+                    "towels",
+                    "tv",
+                    "wardrobe"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "18395956",
+                "name": "Classic room",
+                "room_amenities": [
+                    "private-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "20591412",
+                "name": "Classic Double room full double bed",
+                "room_amenities": [
+                    "private-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            },
+            {
+                "room_group_id": "18391570",
+                "images": [
+                    "https://cdn.worldota.net/t/{size}/content/de/48/de48b5d30494ca8c3e777e5a54c1d2c1344fd35a.jpeg",
+                    "https://cdn.worldota.net/t/{size}/content/3c/6f/3c6f32a993eaadaac7d510c3bfed152f0fece5f7.jpeg"
+                ],
+                "name": "Bungalow",
+                "room_amenities": [
+                    "air-conditioning",
+                    "shared-bathroom"
+                ],
+                "rg_ext": {},
+                "room_description": {
+                    "name": "L'Alpenice Bioagriturismo"
+                }
+            }
+        ],
+        "region": {
+            "id": "136985",
+            "name": "L'Alpenice Bioagriturismo"
+        },
+        "meta_policy": {
+            "visa": {},
+            "no_show": {}
+        },
+        "star_certificate": {},
+        "facts": {
+            "electricity": {}
+        },
+        "location": {}
+    }
+}

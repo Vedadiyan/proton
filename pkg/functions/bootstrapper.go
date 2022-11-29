@@ -19,6 +19,7 @@ func init() {
 	functions["WHERE"] = Where
 	functions["SELECT"] = Select
 	functions["FROM"] = From
+	functions["Replace"] = Replace
 	godynCtx = godyn.New(functions)
 }
 

@@ -45,9 +45,16 @@ func Select(data models.ProtonArg, args []any) (any, error) {
 	switch d := args[0].(type) {
 	case string:
 		{
-			res, err := Select(data, []any{data.GetData(), d})
-			if err != nil {
-				return nil, err
+			var res any
+			d := fixString(d)
+			if d == "$this" {
+				res = data.GetData()
+			} else {
+				_res, err := Select(data, []any{data.GetData(), d})
+				if err != nil {
+					return nil, err
+				}
+				res = _res
 			}
 			return Select(data, []any{res, args[1]})
 		}
