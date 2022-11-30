@@ -72,19 +72,19 @@ func Concat(data models.ProtonArg, args []any) (any, error) {
 	if err != nil {
 		return nil, err
 	}
-	first := args[0].(string)
+	first := fixString(args[0].(string))
 	second := args[1]
 	switch t := second.(type) {
 	case string:
 		{
-			return fmt.Sprintf("%s%s", t, first), nil
+			return fmt.Sprintf("%s%s", first, t), nil
 		}
 	case []any:
 		{
 			array := make([]any, 0)
 			for _, item := range t {
 				if str, ok := item.(string); ok {
-					array = append(array, fmt.Sprintf("%s%s", str, first))
+					array = append(array, fmt.Sprintf("%s%s", first, t))
 				}
 			}
 			return array, nil
