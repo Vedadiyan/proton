@@ -16,9 +16,6 @@ func Replace(data models.ProtonArg, args []any) (any, error) {
 	origin := args[0]
 	source := fixString(args[1].(string))
 	target := fixString(args[2].(string))
-	_ = origin
-	_ = source
-	_ = target
 	switch t := origin.(type) {
 	case string:
 		{
@@ -26,15 +23,11 @@ func Replace(data models.ProtonArg, args []any) (any, error) {
 		}
 	case []any:
 		{
-			if len(t) == 0 {
-				return nil, fmt.Errorf("array is empty")
-			}
-			if _, ok := t[0].(string); !ok {
-				return nil, fmt.Errorf("invalid array")
-			}
 			array := make([]any, 0)
 			for _, item := range t {
-				array = append(array, strings.ReplaceAll(item.(string), source, target))
+				if str, ok := item.(string); !ok {
+					array = append(array, strings.ReplaceAll(str, source, target))
+				}
 			}
 			return array, nil
 		}
