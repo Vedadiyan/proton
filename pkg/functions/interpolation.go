@@ -84,7 +84,7 @@ func Concat(data models.ProtonArg, args []any) (any, error) {
 			array := make([]any, 0)
 			for _, item := range t {
 				if str, ok := item.(string); ok {
-					array = append(array, fmt.Sprintf("%s%s", first, t))
+					array = append(array, fmt.Sprintf("%s%s", first, str))
 				}
 			}
 			return array, nil
