@@ -32,6 +32,10 @@ func Replace(data models.ProtonArg, args []any) (any, error) {
 			}
 			return array, nil
 		}
+	case nil:
+		{
+			return nil, nil
+		}
 	default:
 		{
 			return nil, fmt.Errorf("invalid type")
@@ -59,6 +63,10 @@ func Base64(data models.ProtonArg, args []any) (any, error) {
 				}
 			}
 			return array, nil
+		}
+	case nil:
+		{
+			return nil, nil
 		}
 	default:
 		{
@@ -88,6 +96,10 @@ func Concat(data models.ProtonArg, args []any) (any, error) {
 				}
 			}
 			return array, nil
+		}
+	case nil:
+		{
+			return nil, nil
 		}
 	default:
 		{
