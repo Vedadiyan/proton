@@ -20,6 +20,8 @@ func init() {
 	functions["SELECT"] = Select
 	functions["FROM"] = From
 	functions["REPLACE"] = Replace
+	functions["BASE64"] = Base64
+	functions["CONCAT"] = Concat
 	godynCtx = godyn.New(functions)
 }
 
