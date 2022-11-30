@@ -68,23 +68,23 @@ func Base64(data models.ProtonArg, args []any) (any, error) {
 }
 
 func Concat(data models.ProtonArg, args []any) (any, error) {
-	err := godyn.ValidateArguments([]godyn.Type{godyn.ANY, godyn.STRING}, args)
+	err := godyn.ValidateArguments([]godyn.Type{godyn.STRING, godyn.ANY}, args)
 	if err != nil {
 		return nil, err
 	}
-	first := args[0]
-	second := args[1].(string)
-	switch t := first.(type) {
+	first := args[0].(string)
+	second := args[1]
+	switch t := second.(type) {
 	case string:
 		{
-			return fmt.Sprintf("%s%s", t, second), nil
+			return fmt.Sprintf("%s%s", t, first), nil
 		}
 	case []any:
 		{
 			array := make([]any, 0)
 			for _, item := range t {
 				if str, ok := item.(string); !ok {
-					array = append(array, fmt.Sprintf("%s%s", str, second))
+					array = append(array, fmt.Sprintf("%s%s", str, first))
 				}
 			}
 			return array, nil
