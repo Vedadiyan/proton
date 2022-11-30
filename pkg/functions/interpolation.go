@@ -26,7 +26,7 @@ func Replace(data models.ProtonArg, args []any) (any, error) {
 		{
 			array := make([]any, 0)
 			for _, item := range t {
-				if str, ok := item.(string); !ok {
+				if str, ok := item.(string); ok {
 					array = append(array, strings.ReplaceAll(str, source, target))
 				}
 			}
@@ -54,7 +54,7 @@ func Base64(data models.ProtonArg, args []any) (any, error) {
 		{
 			array := make([]any, 0)
 			for _, item := range t {
-				if str, ok := item.(string); !ok {
+				if str, ok := item.(string); ok {
 					array = append(array, base64.URLEncoding.EncodeToString([]byte(str)))
 				}
 			}
@@ -83,7 +83,7 @@ func Concat(data models.ProtonArg, args []any) (any, error) {
 		{
 			array := make([]any, 0)
 			for _, item := range t {
-				if str, ok := item.(string); !ok {
+				if str, ok := item.(string); ok {
 					array = append(array, fmt.Sprintf("%s%s", str, first))
 				}
 			}
