@@ -175,7 +175,12 @@ func (u unmarshaller) setListPrimitive(list []any, pb proto.Message, fd protoref
 		if item == nil {
 			continue
 		}
-		ls.Append(protoreflect.ValueOf(item))
+		kind := fd.Kind()
+		value, err := conversions.Convert(kind, item)
+		if err != nil {
+			return err
+		}
+		ls.Append(protoreflect.ValueOf(value))
 	}
 	return nil
 }
