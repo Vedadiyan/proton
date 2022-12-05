@@ -22,6 +22,8 @@ func init() {
 	functions["REPLACE"] = Replace
 	functions["BASE64"] = Base64
 	functions["CONCAT"] = Concat
+	functions["SUM"] = Sum
+	functions["TONUMBER"] = ToNumber
 	godynCtx = godyn.New(functions)
 }
 
