@@ -6,7 +6,7 @@
 
 Proton is still a work in progress. Please use it cautiously in your projects.
 
-**PLEASE NOTE THAT `Proton` RELIES ON `gopainless` PACKAGE MANAGER**
+**PLEASE NOTE THAT `Proton` RELIES ON [`gopainless`](https://github.com/Vedadiyan/gopainless) PACKAGE MANAGER**
 
 ## A Protobuffer Querying Language
 
