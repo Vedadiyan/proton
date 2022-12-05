@@ -84,6 +84,9 @@ func (u unmarshaller) link(exprCtx ExprCtx, data map[string]any, pb proto.Messag
 
 func (u unmarshaller) readList(exprCtx ExprCtx, data map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) ([]any, error) {
 	opt := options.GetOptions(fd)
+	if opt.IsNotMapped() {
+		return nil, nil
+	}
 	fieldName := _select(stringNotEmpty, opt.GetSelectAttribute(), helpers.FieldName(fd))
 	if fieldName == nil {
 		panic("not implemented")
@@ -121,6 +124,9 @@ func (u unmarshaller) readList(exprCtx ExprCtx, data map[string]any, pb proto.Me
 
 func (u unmarshaller) readMessage(exprCtx ExprCtx, data map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) (protoreflect.ProtoMessage, error) {
 	opt := options.GetOptions(fd)
+	if opt.IsNotMapped() {
+		return nil, nil
+	}
 	swappedData, err := dataSwap(opt, u.data, data)
 	if err != nil {
 		return nil, err
@@ -135,6 +141,9 @@ func (u unmarshaller) readMessage(exprCtx ExprCtx, data map[string]any, pb proto
 
 func (u unmarshaller) readValue(exprCtx ExprCtx, data map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) (any, error) {
 	opt := options.GetOptions(fd)
+	if opt.IsNotMapped() {
+		return nil, nil
+	}
 	if !opt.HasAttributes() {
 		fieldName := helpers.FieldName(fd)
 		return extract(u.data, data, fieldName), nil
