@@ -1,5 +1,5 @@
 ![Go Version](https://img.shields.io/badge/Go-%3E%3D%201.18-%23007d9c)
-[![Go report](https://goreportcard.com/report/github.com/vedadiyan/proton)](https://goreportcard.com/report/github.com/vedadiyan/proton)
+[![Go report](https://goreportcard.com/badge/github.com/vedadiyan/proton)](https://goreportcard.com/report/github.com/vedadiyan/proton)
 
 ## A Protobuffer Querying Language
 
