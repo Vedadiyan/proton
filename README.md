@@ -6,6 +6,8 @@
 
 Proton is still a work in progress. Please use it cautiously in your projects.
 
+**PLEASE NOTE THAT `Proton` RELIES ON `gopainless` PACKAGE MANAGER**
+
 ## A Protobuffer Querying Language
 
 Proton is a "Protobuffer Querying Language" designed to provide automatic mapping between Protobuffer messages and other data structures. The original motivation behind creating Proton was to minimize development effort needed for integrating third party RESTful APIs in Go microservices. The idea is to leave modelling and mapping data to data engineers so that developers could focus more on getting the microservice ready fast. 
