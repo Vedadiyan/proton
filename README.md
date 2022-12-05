@@ -1,3 +1,6 @@
+![Go Version](https://img.shields.io/badge/Go-%3E%3D%201.18-%23007d9c)
+[![Go report](https://goreportcard.com/report/github.com/vedadiyan/proton)](https://goreportcard.com/report/github.com/vedadiyan/proton)
+
 ## A Protobuffer Querying Language
 
 Proton is a "Protobuffer Querying Language" designed to provide automatic mapping between Protobuffer messages and other data structures. The original motivation behind creating Proton was to minimize development effort needed for integrating third party RESTful APIs in Go microservices. The idea is to leave modelling and mapping data to data engineers so that developers could focus more on getting the microservice ready fast. 
