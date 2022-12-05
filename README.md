@@ -3,6 +3,7 @@
 [![Go report](https://goreportcard.com/badge/github.com/vedadiyan/proton)](https://goreportcard.com/report/github.com/vedadiyan/proton)
 
 **`Proton` is a small querying language for protobuffer.**
+
 Proton is still a work in progress. Please use it cautiously in your projects.
 
 ## A Protobuffer Querying Language
