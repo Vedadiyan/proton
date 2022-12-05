@@ -9,10 +9,12 @@ import (
 
 var selectSelector *protoimpl.ExtensionInfo
 var querySelector *protoimpl.ExtensionInfo
+var notMappedSelector *protoimpl.ExtensionInfo
 
 type ProtonOptions struct {
 	selectAttr      string
 	reduceAttr      string
+	notMapped       bool
 	fieldDescriptor protoreflect.FieldDescriptor
 }
 
@@ -29,14 +31,22 @@ func init() {
 		ExtensionType: (*string)(nil),
 		Field:         51235,
 		Name:          "query",
-		Tag:           "bytes,51234,opt,name=reduce",
+		Tag:           "bytes,51235,opt,name=reduce",
+	}
+	notMappedSelector = &protoimpl.ExtensionInfo{
+		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         51236,
+		Name:          "not_mapped",
+		Tag:           "bytes,51236,opt,name=reduce",
 	}
 }
 
-func New(selectorAttr string, reduceAttr string, fd protoreflect.FieldDescriptor) *ProtonOptions {
+func New(selectorAttr string, reduceAttr string, notMapped bool, fd protoreflect.FieldDescriptor) *ProtonOptions {
 	protonOptions := &ProtonOptions{
 		selectAttr:      selectorAttr,
 		reduceAttr:      reduceAttr,
+		notMapped:       notMapped,
 		fieldDescriptor: fd,
 	}
 	return protonOptions
@@ -46,7 +56,8 @@ func GetOptions(fd protoreflect.FieldDescriptor) *ProtonOptions {
 	options := fd.Options().(*descriptorpb.FieldOptions)
 	selectAttr := proto.GetExtension(options, selectSelector).(string)
 	reduceAttr := proto.GetExtension(options, querySelector).(string)
-	return New(selectAttr, reduceAttr, fd)
+	notMappedSelector := proto.GetExtension(options, notMappedSelector).(string) == "true"
+	return New(selectAttr, reduceAttr, notMappedSelector, fd)
 }
 
 func (protonOptions ProtonOptions) HasSelectAttribute() bool {
@@ -75,4 +86,8 @@ func (protonOptions ProtonOptions) GetFieldName() string {
 		fieldName = protonOptions.fieldDescriptor.TextName()
 	}
 	return fieldName
+}
+
+func (protonOptions ProtonOptions) IsNotMapped() bool {
+	return protonOptions.notMapped
 }
