@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/vedadiyan/proton/pkg/helpers"
+	"github.com/vedadiyan/proton/pkg/options"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
@@ -28,12 +29,23 @@ func parse(pb proto.Message) (map[string]any, error) {
 
 func link(data map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) error {
 	fieldName := helpers.FieldName(fd)
+	options := options.GetOptions(fd)
+	if options != nil {
+		bindTo := options.GetBindTo()
+		if len(bindTo) != 0 {
+			fieldName = bindTo
+		}
+	}
 	if fd.IsList() {
 		ls, err := readList(data, pb, fd)
 		if err != nil {
 			return err
 		}
-		setValue(data, ls, fieldName)
+		start, end, err := options.GetIndex(len(ls))
+		if err != nil {
+			return err
+		}
+		setValue(data, ls[start:end], fieldName)
 		return nil
 	}
 	switch fd.Kind() {

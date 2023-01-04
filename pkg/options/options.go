@@ -1,6 +1,9 @@
 package options
 
 import (
+	"strconv"
+	"strings"
+
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/runtime/protoimpl"
@@ -10,11 +13,17 @@ import (
 var selectSelector *protoimpl.ExtensionInfo
 var querySelector *protoimpl.ExtensionInfo
 var notMappedSelector *protoimpl.ExtensionInfo
+var bindToSelector *protoimpl.ExtensionInfo
+var typeSelector *protoimpl.ExtensionInfo
+var indexSelector *protoimpl.ExtensionInfo
 
 type ProtonOptions struct {
 	selectAttr      string
 	reduceAttr      string
 	notMapped       bool
+	bindToAttr      string
+	typeAttr        string
+	indexAttr       string
 	fieldDescriptor protoreflect.FieldDescriptor
 }
 
@@ -38,15 +47,39 @@ func init() {
 		ExtensionType: (*string)(nil),
 		Field:         51236,
 		Name:          "not_mapped",
-		Tag:           "bytes,51236,opt,name=reduce",
+		Tag:           "bytes,51236,opt,name=not_mapped",
+	}
+	bindToSelector = &protoimpl.ExtensionInfo{
+		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         51237,
+		Name:          "bind_to",
+		Tag:           "bytes,51237,opt,name=bind_to",
+	}
+	typeSelector = &protoimpl.ExtensionInfo{
+		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         51238,
+		Name:          "type",
+		Tag:           "bytes,51238,opt,name=type",
+	}
+	indexSelector = &protoimpl.ExtensionInfo{
+		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         51239,
+		Name:          "index",
+		Tag:           "bytes,51238,opt,name=index",
 	}
 }
 
-func New(selectorAttr string, reduceAttr string, notMapped bool, fd protoreflect.FieldDescriptor) *ProtonOptions {
+func New(selectorAttr string, reduceAttr string, notMapped bool, bindToAttr string, typeAttr string, indexAttr string, fd protoreflect.FieldDescriptor) *ProtonOptions {
 	protonOptions := &ProtonOptions{
 		selectAttr:      selectorAttr,
 		reduceAttr:      reduceAttr,
 		notMapped:       notMapped,
+		bindToAttr:      bindToAttr,
+		typeAttr:        typeAttr,
+		indexAttr:       indexAttr,
 		fieldDescriptor: fd,
 	}
 	return protonOptions
@@ -57,7 +90,10 @@ func GetOptions(fd protoreflect.FieldDescriptor) *ProtonOptions {
 	selectAttr := proto.GetExtension(options, selectSelector).(string)
 	reduceAttr := proto.GetExtension(options, querySelector).(string)
 	notMappedSelector := proto.GetExtension(options, notMappedSelector).(string) == "true"
-	return New(selectAttr, reduceAttr, notMappedSelector, fd)
+	bindToAttr := proto.GetExtension(options, bindToSelector).(string)
+	typeAttr := proto.GetExtension(options, typeSelector).(string)
+	indexAttr := proto.GetExtension(options, indexSelector).(string)
+	return New(selectAttr, reduceAttr, notMappedSelector, bindToAttr, typeAttr, indexAttr, fd)
 }
 
 func (protonOptions ProtonOptions) HasSelectAttribute() bool {
@@ -90,4 +126,39 @@ func (protonOptions ProtonOptions) GetFieldName() string {
 
 func (protonOptions ProtonOptions) IsNotMapped() bool {
 	return protonOptions.notMapped
+}
+
+func (protonOptions ProtonOptions) GetBindTo() string {
+	return protonOptions.bindToAttr
+}
+
+func (protonOptions ProtonOptions) GetType() string {
+	return protonOptions.typeAttr
+}
+
+func (protonOptions ProtonOptions) GetIndex(length int) (int, int, error) {
+	str := strings.Split(protonOptions.indexAttr, ":")
+	start := 0
+	end := length
+	switch len(str) {
+	case 2:
+		i, err := strconv.ParseInt(str[1], 10, 32)
+		if err != nil {
+			return start, end, err
+		}
+		value := int(i)
+		if value < end {
+			end = value
+		}
+		fallthrough
+	case 1:
+		{
+			i, err := strconv.ParseInt(str[0], 10, 32)
+			if err != nil {
+				return start, end, err
+			}
+			start = int(i)
+		}
+	}
+	return start, end, nil
 }
