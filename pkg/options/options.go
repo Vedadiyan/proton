@@ -157,7 +157,12 @@ func (protonOptions ProtonOptions) GetIndex(length int) (int, int, error) {
 			if err != nil {
 				return start, end, err
 			}
-			start = int(i)
+			value := int(i)
+			if value < end {
+				start = value
+			} else {
+				start = end
+			}
 		}
 	}
 	return start, end, nil
