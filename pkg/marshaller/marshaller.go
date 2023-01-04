@@ -8,26 +8,25 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
-func Marshall(pb proto.Message, data *map[string]any) error {
-	*data = make(map[string]any)
-	return parse(data, pb)
+func Marshall(pb proto.Message) (map[string]any, error) {
+	return parse(pb)
 }
 
-func parse(data *map[string]any, pb proto.Message) error {
+func parse(pb proto.Message) (map[string]any, error) {
 	fields := pb.ProtoReflect().Descriptor().Fields()
 	len := fields.Len()
-
+	data := make(map[string]any)
 	for i := 0; i < len; i++ {
 		fd := fields.Get(i)
 		err := link(data, pb, fd)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
-	return nil
+	return data, nil
 }
 
-func link(data *map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) error {
+func link(data map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) error {
 	fieldName := helpers.FieldName(fd)
 	if fd.IsList() {
 		ls, err := readList(data, pb, fd)
@@ -42,8 +41,7 @@ func link(data *map[string]any, pb proto.Message, fd protoreflect.FieldDescripto
 		{
 			v := readMessage(pb, fd)
 
-			var d map[string]any
-			err := parse(&d, v)
+			d, err := parse(v)
 			if err != nil {
 				return err
 			}
@@ -58,7 +56,7 @@ func link(data *map[string]any, pb proto.Message, fd protoreflect.FieldDescripto
 	return nil
 }
 
-func readList(data *map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) ([]any, error) {
+func readList(data map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) ([]any, error) {
 	switch fd.Kind() {
 	case protoreflect.MessageKind:
 		{
@@ -81,8 +79,7 @@ func readListComplex(pb proto.Message, fd protoreflect.FieldDescriptor) ([]any, 
 
 	for i := 0; i < len; i++ {
 		item := ls.Get(i).Message()
-		d := make(map[string]any)
-		err := parse(&d, item.Interface())
+		d, err := parse(item.Interface())
 		if err != nil {
 			return nil, err
 		}
@@ -107,10 +104,10 @@ func readValue(pb proto.Message, fd protoreflect.FieldDescriptor) any {
 	return pb.ProtoReflect().Get(fd).Interface()
 }
 
-func setValue(data *map[string]any, value any, fieldName string) {
+func setValue(data map[string]any, value any, fieldName string) {
 	segments := strings.Split(strings.Split(fieldName, ";")[0], ".")
 	len := len(segments)
-	v := *data
+	v := data
 	for i := 0; i < len-1; i++ {
 		if v[segments[i]] != nil {
 			v = v[segments[i]].(map[string]any)

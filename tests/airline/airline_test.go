@@ -39,10 +39,10 @@ func TestAirline(t *testing.T) {
 		return
 	}
 	t.Logf("%d unmarshalled", len)
-	d := make(map[string]any)
-	err = marshaller.Marshall(&offers, &d)
+	d, err := marshaller.Marshall(&offers)
 	if err != nil {
 		t.Error("bad marshaller")
 		return
 	}
+	_ = d
 }

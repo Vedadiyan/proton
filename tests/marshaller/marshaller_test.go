@@ -14,9 +14,9 @@ func TestMarshaller(t *testing.T) {
 	test.Latitude = 22222
 	test.Adults = 10
 	test.Children = []int32{50}
-	var d map[string]any
-	err := marshaller.Marshall(&test, &d)
+	d, err := marshaller.Marshall(&test)
 	if err != nil {
 		t.FailNow()
 	}
+	_ = d
 }
