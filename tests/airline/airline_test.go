@@ -6,6 +6,7 @@ import (
 	"os"
 	"testing"
 
+	marshaller "github.com/vedadiyan/proton/pkg/marshaller"
 	unmarshaller "github.com/vedadiyan/proton/pkg/unmarshaller"
 )
 
@@ -26,16 +27,22 @@ func TestAirline(t *testing.T) {
 		t.Error("could not deserialize json")
 		return
 	}
-	oofers := ArrayOfOffers{}
-	err = unmarshaller.Unmarshall(mapper, &oofers)
+	offers := ArrayOfOffers{}
+	err = unmarshaller.Unmarshall(mapper, &offers)
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	len := len(oofers.GetOffers())
+	len := len(offers.GetOffers())
 	if len == 0 {
 		t.Error("bad unmarshaller")
 		return
 	}
 	t.Logf("%d unmarshalled", len)
+	d, err := marshaller.Marshall(&offers)
+	if err != nil {
+		t.Error("bad marshaller")
+		return
+	}
+	_ = d
 }

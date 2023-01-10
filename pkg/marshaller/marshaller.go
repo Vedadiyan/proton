@@ -4,44 +4,56 @@ import (
 	"strings"
 
 	"github.com/vedadiyan/proton/pkg/helpers"
+	"github.com/vedadiyan/proton/pkg/options"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
-func Marshall(pb proto.Message, data map[string]any) error {
-	return parse(data, pb)
+func Marshall(pb proto.Message) (map[string]any, error) {
+	return parse(pb)
 }
 
-func parse(data map[string]any, pb proto.Message) error {
+func parse(pb proto.Message) (map[string]any, error) {
 	fields := pb.ProtoReflect().Descriptor().Fields()
 	len := fields.Len()
-
+	data := make(map[string]any)
 	for i := 0; i < len; i++ {
 		fd := fields.Get(i)
 		err := link(data, pb, fd)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
-	return nil
+	return data, nil
 }
 
 func link(data map[string]any, pb proto.Message, fd protoreflect.FieldDescriptor) error {
 	fieldName := helpers.FieldName(fd)
+	options := options.GetOptions(fd)
+	if options != nil {
+		bindTo := options.GetBindTo()
+		if len(bindTo) != 0 {
+			fieldName = bindTo
+		}
+	}
 	if fd.IsList() {
 		ls, err := readList(data, pb, fd)
 		if err != nil {
 			return err
 		}
-		setValue(data, ls, fieldName)
+		start, end, err := options.GetIndex(len(ls))
+		if err != nil {
+			return err
+		}
+		setValue(data, ls[start:end], fieldName)
+		return nil
 	}
 	switch fd.Kind() {
 	case protoreflect.MessageKind:
 		{
 			v := readMessage(pb, fd)
 
-			d := make(map[string]any)
-			err := parse(d, v)
+			d, err := parse(v)
 			if err != nil {
 				return err
 			}
@@ -79,8 +91,7 @@ func readListComplex(pb proto.Message, fd protoreflect.FieldDescriptor) ([]any, 
 
 	for i := 0; i < len; i++ {
 		item := ls.Get(i).Message()
-		d := make(map[string]any)
-		err := parse(d, item.Interface())
+		d, err := parse(item.Interface())
 		if err != nil {
 			return nil, err
 		}
